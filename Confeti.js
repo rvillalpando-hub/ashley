@@ -2,9 +2,9 @@
 
 //
 // 1. Configuración Inicial
-window.oncontextmenu = function () {
-  return false;
-};
+//window.oncontextmenu = function () {
+//  return false;
+//};
 
 const canvasConfeti = document.getElementById("canvas1"); //Lienzo
 const ctxConfeti = canvasConfeti.getContext("2d"); // Funciones
