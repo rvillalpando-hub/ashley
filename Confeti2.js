@@ -1,8 +1,8 @@
 // Confeti Adelante
 
-window.oncontextmenu = function () {
-  return false;
-};
+//window.oncontextmenu = function () {
+//  return false;
+//};
 
 const canvasConfeti2 = document.getElementById("canvas2");
 const ctxConfeti2 = canvasConfeti2.getContext("2d");
