@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <title>Feliz Cumpleaños ASHLEY</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="mobile.css"
+      media="only screen and (max-width: 768px)"
+    />
+  </head>
+  <body>
+    <!--Confeti Atras-->
+    <canvas id="canvas1"></canvas>
+
+    <div class="contenedor">
+      <!-- PortaRetrato -->
+      <div class="portaretrato-torta-caja">
+        <div class="portaretrato">
+          <button class="camara-boton" id="abrirVideo" type="button">
+          <span class="camara-emoji">📹</span>  
+        </button>
+          <div class="marco">
+            <img src="recursos/cumpleañero.jpeg" alt="Foto" />
+          </div>
+          <div class="soporte-marco"></div>
+        </div>
+
+     
+
+        <!--Torta De Cumpleaños-->
+        <div class="torta-cumpleaños">
+          <div class="torta">
+            <div class="chocolate"></div>
+          </div>
+          <div class="vela"></div>
+          <div class="llama"></div>
+         
+ 
+        </div>
+
+        <!--Caja De Regalo-->
+        <div class="caja-wrapper">
+          <div class="caja">
+            <div class="cinta-de-regalo">
+              <div class="cinta-de-regalo-izquierda"></div>
+              <div class="cinta-de-regalo-derecha"></div>
+              <div class="cinta-de-regalo-centro"></div>
+            </div>
+            <div class="regalos">
+              <div class="regalo-sombra"></div>
+            </div>
+            <div class="regalo"></div>
+            <div class="icono-estrella estrella1"></div>
+            <div class="icono-estrella estrella2"></div>
+            <div class="icono-estrella estrella3"></div>
+            <div class="icono-estrella estrella4"></div>
+            <div class="icono-estrella estrella5"></div>
+          </div>
+        </div>
+
+        <!--Mensaje Feliz Cumpleaños-->
+        <div class="happy-birthday">Feliz Cumpleaños 
+          <br/>Ashley</div>
+
+  
+      </div>
+
+      <!--Mesa-->
+      <div class="soporte"></div>
+    </div>
+
+<!-- Carta Modal -->
+<div class="modal-carta" id="modalCarta">
+  <div class="contenido-carta">
+    <div class="carta">
+      <h2>✨ Querida Ashley ✨</h2>
+      <p>
+        ¡Feliz cumpleaños! Hoy cumples 11 años y aunque todavía no nos conocemos en persona,
+        quiero que sepas que desde Chile te envío un abrazo muy grande y muchos buenos deseos. 🤗
+      </p>
+      <p>
+        Quiero contarte algo muy importante: tu mamá te ama con todo su corazón, y aunque ella esté
+        lejos ahora, siempre está pensando en ti, en cómo estás y en que seas muy feliz. Yo estoy
+        a su lado, cuidándola y queriéndola, y sé que ella se siente orgullosa de la niña tan
+        especial que eres. 💖
+      </p>
+      <p>
+        Sé que estás entrando a una etapa nueva, donde conocerás amigos, vivirás experiencias
+        inolvidables y empezarás a descubrir quién eres. Quiero pedirte algo: no dejes de ser
+        tú misma, siempre auténtica, alegre y con esa luz que seguro te caracteriza. Cada día
+        es único y vale la pena vivirlo al máximo, pero siempre con el corazón y con cuidado,
+        rodeándote de personas que te quieran de verdad. 🌟
+      </p>
+      <p>
+        También quiero decirte que le eches muchas ganas a tus estudios, porque eso te abrirá
+        puertas increíbles y te hará sentir orgullosa de ti misma. Y cuando menos lo pienses,
+        estaremos conociéndonos, compartiendo una sonrisa y creando nuevos recuerdos juntos. 🎈
+      </p>
+      <p>
+        Que este nuevo año de vida esté lleno de colores, risas, abrazos y todo lo que te haga
+        feliz. ¡Disfruta tu día como tú sabes hacerlo!
+      </p>
+      <p class="firma">
+        Con mucho cariño desde Chile,<br />
+        <strong>Rene</strong> 💙
+      </p>
+    </div>
+  </div>
+</div>
+
+    <!-- Video Modal -->
+    <div class="modal-video" id="modalVideo">
+      <div class="contenido-video">
+        <button class="cerrar-modal" id="cerrarVideo" type="button" aria-label="Cerrar video">
+          ×
+        </button>
+        <div class="video-wrapper">
+          <video controls playsinline preload="metadata">
+            <source src="recursos/video.mp4" type="video/mp4" />
+            Tu navegador no soporta este video.
+          </video>
+        </div>
+        <p class="video-caption">Un recuerdo especial para ti 💖</p>
+      </div>
+    </div>
+
+    <!--Confeti Delante-->
+    <canvas id="canvas2"></canvas>
+
+    <!--Todo Oscuro-->
+    <audio id="soplido" src="recursos/soplar1.mp3" preload="auto"></audio>
+    <audio
+      id="cancion"
+      src="recursos/cancion.mp3"
+      preload="auto"
+    ></audio>
+    <div class="overlay"></div>
+
+    <script src="Confeti.js"></script>
+    <script src="Confeti2.js"></script>
+    <script src="Sorpresa.js"></script>
+  </body>
+</html>
+
+
