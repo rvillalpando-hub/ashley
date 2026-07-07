@@ -1,36 +1,52 @@
 // Carta
-const regalo = document.querySelector(".regalo");
-const regalos = document.querySelector(".regalos");
-const modalCarta = document.getElementById("modalCarta");
-const abrirVideo = document.getElementById("abrirVideo");
-const modalVideo = document.getElementById("modalVideo");
-const cerrarVideo = document.getElementById("cerrarVideo");
-const video = modalVideo.querySelector("video");
+ const regalo = document.getElementById("regalo");
+  const regalos = document.querySelector(".regalos");
+  const modalCarta = document.getElementById("modalCarta");
+  const abrirVideo = document.getElementById("abrirVideo");
+  const modalVideo = document.getElementById("modalVideo");
+  const cerrarVideo = document.getElementById("cerrarVideo");
+  const video = modalVideo.querySelector("video");
+  const cancion = document.getElementById("cancion");
+  const overlay1 = document.getElementById("overlay1");
+  const soplido = document.getElementById("soplido");
+  const llama = document.getElementById("llama");
+  const overlay = document.getElementById("overlay");
 
-function abrirModal(modal) {
-  modal.classList.add("activo");
-}
+  setTimeout(() => {
+    overlay.classList.add("hidden");
+  }, 3000);
 
-function cerrarModal(modal) {
-  modal.classList.remove("activo");
-}
+  let videoStarted = false;
 
-regalo.addEventListener("click", () => {
-  abrirModal(modalCarta);
-});
-
-regalos.addEventListener("click", () => {
-  abrirModal(modalCarta);
-});
-
-modalCarta.addEventListener("click", (event) => {
-  if (event.target === modalCarta) {
-    cerrarModal(modalCarta);
+  function abrirModal(modal) {
+    modal.classList.add("activo");
+    document.body.style.overflow = 'hidden';
   }
-});
+
+  function cerrarModal(modal) {
+    modal.classList.remove("activo");
+    document.body.style.overflow = '';
+  }
+
+  // Abrir carta
+  regalo.addEventListener("click", () => abrirModal(modalCarta));
+  regalos.addEventListener("click", () => abrirModal(modalCarta));
+
+  // Cerrar carta
+  document.getElementById("cerrarCarta").addEventListener("click", (e) => {
+    e.stopPropagation();
+    cerrarModal(modalCarta);
+  });
+
+  modalCarta.addEventListener("click", (event) => {
+    if (event.target === modalCarta) cerrarModal(modalCarta);
+  });
+
 
 abrirVideo.addEventListener("click", () => {
   abrirModal(modalVideo);
+     if (!cancion.paused) cancion.pause();
+    
   video.play().catch(() => {});
 });
 
@@ -56,21 +72,23 @@ modalVideo.addEventListener("click", (event) => {
   }
 });
 
-// Todo Oscuro + Soplido + Canción
-const overlay = document.querySelector(".overlay");
-const soplido = document.getElementById("soplido");
-const cancion = document.getElementById("cancion");
-const llama = document.querySelector(".llama");
+  // Soplido - MEJORADO
+  llama.addEventListener("click", () => {
+    soplido.currentTime = 0;
+    soplido.play();
+    llama.style.animation = "apagar 0.6s forwards";
+    setTimeout(() => {
+      cancion.currentTime = 0;
+      cancion.play().catch(() => console.log("La música no pudo reproducirse automáticamente"));
+      overlay1.classList.add("hidden");
+    }, 1000);
+  });
 
-llama.addEventListener("click", () => {
-  soplido.currentTime = 0;
-  soplido.play();
+  // Soporte para teclado
+  llama.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      llama.click();
+    }
+  });
 
-  llama.style.animation = "apagar 0.5s forwards"; // forwards -> Ultimo frame (to)
-
-  setTimeout(() => {
-    cancion.currentTime = 0;
-    cancion.play();
-    overlay.classList.add("hidden");
-  }, 1000);
-});
