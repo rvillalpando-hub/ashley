@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <title>🎉 Feliz Cumpleaños ASHLEY 🎉</title>
+    <style>
+      /* ---------- ESTILOS BASE ---------- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      html {
+        overflow: hidden;
+      }
+
+      body {
+        background: linear-gradient(135deg, #ffb6c1 0%, #ff8da1 50%, #ff6b8a 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* ---------- ESTRELLAS FUGACES DE FONDO ---------- */
+      .estrellas-fugaces {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .estrella-fugaz {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: white;
+        border-radius: 50%;
+        animation: fugaz 3s linear infinite;
+        box-shadow: 0 0 20px 2px rgba(255, 255, 255, 0.8);
+      }
+
+      .estrella-fugaz::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
+        transform: translateY(-50%);
+      }
+
+      @keyframes fugaz {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-400px, 400px) scale(0);
+          opacity: 0;
+        }
+      }
+
+      .estrella-fugaz:nth-child(1) {
+        top: 10%;
+        left: 80%;
+        animation-delay: 0s;
+        animation-duration: 2.8s;
+      }
+      .estrella-fugaz:nth-child(2) {
+        top: 30%;
+        left: 60%;
+        animation-delay: 1.2s;
+        animation-duration: 3.2s;
+      }
+      .estrella-fugaz:nth-child(3) {
+        top: 50%;
+        left: 90%;
+        animation-delay: 0.6s;
+        animation-duration: 2.5s;
+      }
+      .estrella-fugaz:nth-child(4) {
+        top: 70%;
+        left: 40%;
+        animation-delay: 1.8s;
+        animation-duration: 3.5s;
+      }
+      .estrella-fugaz:nth-child(5) {
+        top: 20%;
+        left: 20%;
+        animation-delay: 2.4s;
+        animation-duration: 2.9s;
+      }
+
+      /* ---------- MODALES ---------- */
+      .modal-carta,
+      .modal-video {
+        position: fixed;
+        inset: 0;
+        background: rgba(17, 24, 39, 0.75);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+      }
+
+      .modal-carta.activo,
+      .modal-video.activo {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .contenido-carta,
+      .contenido-video {
+        position: relative;
+        width: min(92vw, 540px);
+        border-radius: 28px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9) translateY(20px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .modal-carta.activo .contenido-carta,
+      .modal-video.activo .contenido-video {
+        transform: scale(1) translateY(0);
+      }
+
+      .contenido-carta {
+        padding: 0;
+        max-height: 90vh;
+        overflow-y: auto;
+        margin: 20px 0;
+      }
+
+      .contenido-video {
+        padding: 24px;
+        background: linear-gradient(135deg, rgba(255, 248, 250, 0.97), rgba(255, 235, 245, 0.95));
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /* ---------- CARTA MEJORADA ---------- */
+      .carta {
+        background: linear-gradient(145deg, #fff8fb, #ffeef6);
+        color: #7a2e4a;
+        padding: 32px 28px;
+        border-radius: 24px;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 
+          inset 0 1px 0 rgba(255, 255, 255, 0.7),
+          0 20px 40px rgba(197, 77, 122, 0.15);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Decoración de la carta */
+      .carta::before {
+        content: '🎂';
+        position: absolute;
+        top: -20px;
+        right: -10px;
+        font-size: 80px;
+        opacity: 0.1;
+        transform: rotate(15deg);
+      }
+
+      .carta::after {
+        content: '🎈';
+        position: absolute;
+        bottom: -10px;
+        left: -10px;
+        font-size: 70px;
+        opacity: 0.1;
+        transform: rotate(-10deg);
+      }
+
+      .carta h2 {
+        margin: 0 0 12px;
+        font-family: 'Pacifico', cursive;
+        font-size: 2.2rem;
+        background: linear-gradient(135deg, #c54d7a, #ff6b8a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .carta p {
+        margin: 0 0 14px;
+        line-height: 1.8;
+        font-size: 1rem;
+        color: #4a2a3a;
+        position: relative;
+        z-index: 1;
+      }
+
+      .carta .firma {
+        margin-top: 18px;
+        font-weight: 600;
+        font-style: italic;
+        text-align: right;
+        color: #c54d7a;
+        font-size: 1.1rem;
+      }
+
+      /* ---------- BOTÓN CERRAR ---------- */
+      .cerrar-modal {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        border: none;
+        background: rgba(255, 255, 255, 0.9);
+        color: #c54d7a;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 6px 16px rgba(197, 77, 122, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: all 0.3s ease;
+        font-weight: 300;
+      }
+
+      .cerrar-modal:hover {
+        transform: rotate(90deg) scale(1.1);
+        background: #c54d7a;
+        color: white;
+        box-shadow: 0 8px 25px rgba(197, 77, 122, 0.4);
+      }
+
+      /* ---------- VIDEO ---------- */
+      .video-wrapper {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        position: relative;
+      }
+
+      .video-wrapper::before {
+        content: '▶';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+        color: white;
+        opacity: 0.3;
+        pointer-events: none;
+        text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      }
+
+      video {
+        display: block;
+        width: 100%;
+        max-height: 60vh;
+        background: #000;
+      }
+
+      .video-caption {
+        margin: 12px 0 0;
+        text-align: center;
+        font-weight: 600;
+        color: #8a3c5a;
+        font-size: 1.05rem;
+      }
+
+      /* ---------- BOTÓN CÁMARA - VERSIÓN PREMIUM ---------- */
+      .camara-boton {
+        position: absolute;
+        right: 20px;
+        bottom: -20px;
+        z-index: 10;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        animation: camaraPremium 2.5s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px rgba(255, 77, 122, 0.5));
+        transition: filter 0.3s ease;
+      }
+
+      .camara-boton:hover {
+        filter: drop-shadow(0 0 40px rgba(255, 77, 122, 0.9));
+      }
+
+      .camara-boton:active {
+        animation: none !important;
+        transform: scale(0.75) !important;
+        transition: transform 0.08s ease;
+        filter: drop-shadow(0 0 60px rgba(255, 77, 122, 1));
+      }
+
+      .camara-emoji {
+        font-size: 5rem;
+        display: inline-block;
+        pointer-events: none;
+        animation: emojiGlow 2.5s ease-in-out infinite;
+        transition: transform 0.3s ease;
+      }
+
+      .camara-boton:hover .camara-emoji {
+        transform: scale(1.1) rotate(-5deg);
+      }
+
+      /* Anillo pulsante mejorado */
+      .camara-boton::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 90px;
+        height: 90px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 77, 122, 0.25), transparent 70%);
+        animation: pulseRing 2.5s ease-in-out infinite;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* Segundo anillo exterior */
+      .camara-boton::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 110px;
+        height: 110px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 2px solid rgba(255, 77, 122, 0.15);
+        animation: pulseRingOuter 2.5s ease-in-out infinite;
+        z-index: -2;
+        pointer-events: none;
+      }
+
+      @keyframes camaraPremium {
+        0%, 100% {
+          transform: translateY(0) scale(1) rotate(0deg);
+        }
+        15% {
+          transform: translateY(-25px) scale(1.12) rotate(-3deg);
+        }
+        30% {
+          transform: translateY(0) scale(0.95) rotate(2deg);
+        }
+        45% {
+          transform: translateY(-15px) scale(1.06) rotate(-2deg);
+        }
+        60% {
+          transform: translateY(0) scale(1) rotate(0deg);
+        }
+        80% {
+          transform: translateY(-8px) scale(1.03) rotate(1deg);
+        }
+      }
+
+      @keyframes emojiGlow {
+        0%, 100% {
+          filter: brightness(1) drop-shadow(0 0 8px rgba(255, 200, 100, 0.3));
+        }
+        50% {
+          filter: brightness(1.4) drop-shadow(0 0 30px rgba(255, 200, 100, 0.8)) drop-shadow(0 0 60px rgba(255, 77, 122, 0.3));
+        }
+      }
+
+      @keyframes pulseRing {
+        0%, 100% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      @keyframes pulseRingOuter {
+        0%, 100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.3;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.8);
+          opacity: 0;
+        }
+      }
+
+      /* ---------- CONFETIS ---------- */
+      #canvas1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      #canvas2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      /* ---------- CONTENEDOR PRINCIPAL ---------- */
+      .contenedor {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 3;
+      }
+
+      .portaretrato-torta-caja {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 520px;
+        gap: 20px;
+        position: relative;
+        bottom: -50px;
+      }
+
+      /* ---------- MESA MEJORADA ---------- */
+      .soporte {
+        position: relative;
+        width: 500px;
+        left: -20px;
+        bottom: -50px;
+        height: 25px;
+        border-radius: 100px;
+        background: linear-gradient(to bottom, #5a5a5a, #3a3a3a);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .soporte::before {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 1000px;
+        background: linear-gradient(to right, #4a4a4a, #5a5a5a);
+        left: 195px;
+        top: 18px;
+        box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .soporte::after {
+        content: "";
+        position: absolute;
+        background: linear-gradient(135deg, #ffb6c1 0%, #ff8da1 100%);
+        width: 95px;
+        height: 1000px;
+        border-radius: 30px 30px 0 0;
+        left: 136px;
+        top: 20px;
+        box-shadow: 125px 0 #ff8da1;
+      }
+
+      /* ---------- PORTA RETRATO ---------- */
+      .portaretrato {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .marco {
+        width: 70px;
+        height: 100px;
+        padding: 5px;
+        background: linear-gradient(135deg, #d4a373, #b8895c);
+        border: 5px solid #8a5e3c;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 215, 150, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        transition: transform 0.3s ease;
+      }
+
+      .marco:hover {
+        transform: scale(1.02);
+      }
+
+      .marco img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .soporte-marco {
+        width: 50px;
+        height: 15px;
+        background: linear-gradient(135deg, #8a5e3c, #6d4a2e);
+        margin-top: -5px;
+        clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* ---------- TORTA ---------- */
+      .torta-cumpleaños {
+        position: relative;
+        width: 274px;
+        height: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .torta {
+        position: absolute;
+        overflow: hidden;
+        width: 274px;
+        height: 140px;
+        background: linear-gradient(to bottom, #fde8c8, #f5d4b0);
+        bottom: 0;
+        left: 0;
+        border-radius: 30px 30px 0 0;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .torta:before {
+        content: "";
+        position: absolute;
+        background: linear-gradient(to right, #ff9393, #ff6b8a);
+        width: 275px;
+        height: 15px;
+        top: 75px;
+        box-shadow: 0 30px #ff6b8a;
+      }
+
+      .torta:after {
+        content: "";
+        position: absolute;
+        background: linear-gradient(to right, #ff5959, #e63e5e);
+        width: 275px;
+        height: 40px;
+        border-radius: 0 0 30px 30px;
+      }
+
+      .chocolate {
+        position: absolute;
+        background: linear-gradient(to bottom, #ff5959, #e63e5e);
+        width: 25px;
+        height: 45px;
+        top: 25px;
+        left: 0;
+        z-index: 1;
+        border-radius: 50px;
+        box-shadow: 
+          25px 2px #fde8c8, 50px -10px #ff5959, 
+          75px -5px #fde8c8, 100px 3px #ff5959,
+          125px 0px #fde8c8, 150px -5px #ff5959,
+          175px 3px #fde8c8, 200px -5px #ff5959,
+          225px -10px #fde8c8, 250px 4px #ff5959;
+      }
+
+      /* ---------- VELA ---------- */
+      .vela {
+        position: absolute;
+        width: 15px;
+        height: 70px;
+        background: linear-gradient(to top, #fff, #f0f0f0);
+        bottom: 140px;
+        left: calc(50% - 7.5px);
+        box-shadow: inset 0 -10px #FF6F61, 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 2px 2px 0 0;
+      }
+
+      .vela:before {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background: linear-gradient(to bottom, #FF6F61, #e63e5e);
+        top: 10px;
+        box-shadow: 0 25px #FF6F61;
+        border-radius: 2px;
+      }
+
+      .vela:after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 15px;
+        background: #333;
+        top: -15px;
+        left: 6px;
+        border-radius: 1px;
+      }
+
+      /* ---------- LLAMA MEJORADA ---------- */
+      .llama {
+        position: absolute;
+        bottom: 210px;
+        left: calc(50% - 12px);
+        width: 45px;
+        height: 65px;
+        background: radial-gradient(ellipse at bottom, 
+          rgba(255, 255, 200, 1) 0%, 
+          rgba(255, 200, 50, 0.9) 30%, 
+          rgba(255, 150, 0, 0.7) 60%, 
+          rgba(255, 80, 0, 0.4) 80%, 
+          transparent 100%);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        filter: blur(0.5px);
+        animation: flamaPremium 0.12s infinite alternate ease-in-out;
+        opacity: 0.95;
+        cursor: pointer;
+        z-index: 10000;
+        box-shadow: 0 0 40px rgba(255, 200, 50, 0.3);
+      }
+
+      @keyframes flamaPremium {
+        0% {
+          transform: scale(1, 1) translateY(0) rotate(-2deg);
+          background: radial-gradient(ellipse at bottom, 
+            rgba(255, 255, 200, 1) 0%, 
+            rgba(255, 200, 50, 0.9) 30%, 
+            rgba(255, 150, 0, 0.7) 60%, 
+            rgba(255, 80, 0, 0.4) 80%, 
+            transparent 100%);
+        }
+        50% {
+          transform: scale(1.15, 1.25) translateY(-4px) rotate(2deg);
+          background: radial-gradient(ellipse at bottom, 
+            rgba(255, 255, 220, 1) 0%, 
+            rgba(255, 180, 0, 0.85) 30%, 
+            rgba(255, 100, 0, 0.6) 60%, 
+            rgba(255, 50, 0, 0.3) 80%, 
+            transparent 100%);
+        }
+        100% {
+          transform: scale(0.9, 1.1) translateY(2px) rotate(-1deg);
+          background: radial-gradient(ellipse at bottom, 
+            rgba(255, 250, 200, 1) 0%, 
+            rgba(255, 190, 0, 0.88) 30%, 
+            rgba(255, 120, 0, 0.65) 60%, 
+            rgba(255, 60, 0, 0.35) 80%, 
+            transparent 100%);
+        }
+      }
+
+      /* ---------- OVERLAY (oscuridad) ---------- */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(ellipse at center, #1a0a0a, #000000);
+        opacity: 1;
+        z-index: 9999;
+        transition: opacity 2s ease;
+      }
+      .overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes apagar {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* ---------- CAJA DE REGALO ---------- */
+      .caja-wrapper {
+        transform: scale(0.75);
+        transform-origin: center bottom;
+      }
+
+      .caja {
+        position: relative;
+        left: -20px;
+        width: 150px;
+        height: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .cinta-de-regalo,
+      .cinta-de-regalo-izquierda,
+      .cinta-de-regalo-derecha,
+      .cinta-de-regalo-centro,
+      .regalos,
+      .regalo-sombra,
+      .regalo {
+        position: absolute;
+      }
+
+      .cinta-de-regalo {
+        bottom: 100px;
+        left: calc(50% - 17px);
+        width: 34px;
+        height: 23px;
+        animation: cinta 1.5s ease-in-out infinite;
+      }
+
+      .cinta-de-regalo-centro {
+        border-radius: 12px;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, #d22d2d, #b01a1a);
+      }
+
+      .cinta-de-regalo-izquierda,
+      .cinta-de-regalo-derecha {
+        box-shadow: 0 0 0 8px #fe3f3f inset;
+        top: 3.4px;
+        width: 45px;
+        height: 57px;
+        background: linear-gradient(to right, #d22d2d, #b01a1a);
+      }
+
+      .cinta-de-regalo-izquierda {
+        border-radius: 17px 0 34px 11px / 17px 0 34px 40px;
+        right: calc(100% - 12px);
+        transform: rotate(35deg);
+        transform-origin: 100% 15%;
+      }
+      .cinta-de-regalo-izquierda::before {
+        background: linear-gradient(to bottom, #fe3f3f, #d22d2d);
+        border-radius: inherit;
+        content: "";
+        position: absolute;
+        inset: 0;
+        clip-path: polygon(0 42%, 100% 12%, 100% 100%, 0 100%);
+      }
+
+      .cinta-de-regalo-derecha {
+        border-radius: 0 17px 11px 34px / 0 17px 40px 34px;
+        left: calc(100% - 12px);
+        transform: rotate(-35deg);
+        transform-origin: 0% 15%;
+      }
+
+      .cinta-de-regalo-derecha::before {
+        background: linear-gradient(to bottom, #fe3f3f, #d22d2d);
+        border-radius: inherit;
+        content: "";
+        position: absolute;
+        inset: 0;
+        clip-path: polygon(0 12%, 100% 42%, 100% 100%, 0 100%);
+      }
+
+      .regalos {
+        animation: base 1.5s ease-in-out infinite;
+        background: linear-gradient(#fe3f3f, #fe3f3f) 50% 50% / 32px 100% no-repeat, #e9e3e3;
+        border-radius: 16px;
+        bottom: 0;
+        left: calc(50% - 60.2px);
+        width: 120.4px;
+        height: 80px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .regalo {
+        animation: techo 1.5s ease-in-out infinite;
+        background: linear-gradient(#fe3f3f, #fe3f3f) 50% 50% / 32px 101% no-repeat, #efffee;
+        bottom: 77px;
+        left: calc(50% - 66.5px);
+        width: 133px;
+        height: 34px;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .regalo-sombra {
+        animation: sombra 1.5s ease-in-out infinite;
+        background-color: #00000010;
+        bottom: 77px;
+        left: calc(50% - 76.5px);
+        width: 133px;
+        height: 34px;
+        border-radius: 10px;
+      }
+
+      /* Estrellas animadas */
+      .icono-estrella {
+        position: absolute;
+        background: radial-gradient(circle at 30% 30%, #fcff50, #ffd700);
+        clip-path: polygon(50% 0, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0 50%, 35% 35%);
+      }
+
+      .estrella1 {
+        animation: estrella1 1.5s ease-in-out infinite;
+        animation-delay: calc(1.5s * 0.5);
+        bottom: 20px;
+        left: 120px;
+        width: 28px;
+        height: 28px;
+      }
+      .estrella2 {
+        animation: estrella2 1.5s ease-in-out infinite;
+        animation-delay: calc(1.5s * 0.125);
+        top: 10px;
+        left: 100px;
+        width: 28px;
+        height: 28px;
+      }
+      .estrella3 {
+        animation: estrella1 1.5s ease-in-out infinite;
+        animation-delay: calc(1.5s * 0.25);
+        top: 60px;
+        left: 50px;
+        width: 20px;
+        height: 20px;
+      }
+      .estrella4 {
+        animation: estrella2 1.5s ease-in-out infinite;
+        bottom: 5px;
+        left: 20px;
+        width: 28px;
+        height: 28px;
+      }
+      .estrella5 {
+        animation: estrella2 1.5s ease-in-out infinite;
+        animation-delay: calc(1.5s * 0.375);
+        top: 20px;
+        left: 20px;
+        width: 20px;
+        height: 20px;
+      }
+
+      @keyframes cinta {
+        from,
+        50% {
+          transform: translateY(0) rotate(0);
+        }
+        62.5% {
+          transform: translateY(75%) rotate(0);
+        }
+        68.75% {
+          transform: translateY(-37.5%) rotate(15deg);
+        }
+        75% {
+          transform: translateY(-150%) rotate(5deg);
+        }
+        87.5% {
+          transform: translateY(65%) rotate(-3deg);
+        }
+        to {
+          transform: translateY(0) rotate(0);
+        }
+      }
+
+      @keyframes base {
+        from,
+        50% {
+          transform: translateY(0) scale(1, 1);
+        }
+        62.5% {
+          transform: translateY(4%) scale(1.12, 0.89);
+        }
+        75% {
+          transform: translateY(-11%) scale(0.92, 1.1);
+        }
+        87.5% {
+          transform: translateY(0%) scale(1.05, 0.9);
+        }
+        to {
+          transform: translateY(0) scale(1, 1);
+        }
+      }
+
+      @keyframes techo {
+        from,
+        50% {
+          transform: translateY(0) scale(1, 1) rotate(0);
+        }
+        62.5% {
+          animation-timing-function: ease-in;
+          transform: translateY(45%) scale(1.14, 0.95) rotate(0);
+        }
+        68.75% {
+          animation-timing-function: ease-out;
+          transform: translateY(-22.5%) scale(1.05, 1.03) rotate(15deg);
+        }
+        75% {
+          animation-timing-function: ease-out;
+          transform: translateY(-90%) scale(0.96, 1.1) rotate(5deg);
+        }
+        87.5% {
+          transform: translateY(30%) scale(1.12, 0.93) rotate(-3deg);
+        }
+        to {
+          transform: translateY(0) scale(1, 1) rotate(0);
+        }
+      }
+
+      @keyframes sombra {
+        from,
+        50% {
+          transform: translateY(0) scale(1, 1) rotate(0);
+        }
+        62.5% {
+          animation-timing-function: ease-in;
+          transform: translateY(10%) scale(1.14, 0.95) rotate(0);
+        }
+        68.75% {
+          animation-timing-function: ease-out;
+          transform: translateY(-10%) scale(1.05, 1.03) rotate(15deg);
+        }
+        75% {
+          animation-timing-function: ease-out;
+          transform: translateY(-30%) scale(0.96, 1.1) rotate(5deg);
+        }
+        87.5% {
+          transform: translateY(10%) scale(1.12, 0.93) rotate(-3deg);
+        }
+        to {
+          transform: translateY(0) scale(1, 1) rotate(0);
+        }
+      }
+
+      @keyframes estrella1 {
+        from {
+          transform: scale(0) rotate(0);
+        }
+        25% {
+          animation-timing-function: ease-out;
+          transform: scale(1) rotate(0.25turn);
+        }
+        50%,
+        to {
+          transform: scale(0) rotate(0.5turn);
+        }
+      }
+
+      @keyframes estrella2 {
+        from {
+          transform: scale(0) rotate(0);
+        }
+        25% {
+          animation-timing-function: ease-out;
+          transform: scale(1) rotate(-0.25turn);
+        }
+        50%,
+        to {
+          transform: scale(0) rotate(-0.5turn);
+        }
+      }
+
+      /* ---------- MENSAJE FELIZ CUMPLEAÑOS MEJORADO ---------- */
+      .happy-birthday {
+        text-align: center;
+        position: absolute;
+        top: -180px;
+        left: 20%;
+        transform: translateX(-50%);
+        font-family: 'Pacifico', cursive;
+        font-size: 44px;
+        color: #ff4d6d;
+        user-select: none;
+        text-shadow: 
+          2px 2px 4px rgba(0, 0, 0, 0.15),
+          0 0 20px rgba(255, 77, 109, 0.2);
+        animation: flotarPremium 2.5s ease-in-out infinite, brilloPremium 2s infinite;
+        letter-spacing: 1px;
+        line-height: 1.1;
+      }
+
+      .happy-birthday br {
+        display: block;
+        margin: 4px 0;
+      }
+
+      @keyframes flotarPremium {
+        0%, 100% {
+          transform: translateX(-50%) translateY(0) scale(1);
+        }
+        25% {
+          transform: translateX(-50%) translateY(-10px) scale(1.02);
+        }
+        75% {
+          transform: translateX(-50%) translateY(-5px) scale(0.98);
+        }
+      }
+
+      @keyframes brilloPremium {
+        0%, 100% {
+          text-shadow: 
+            0 0 10px rgba(255, 77, 109, 0.3),
+            0 0 20px rgba(255, 77, 109, 0.1);
+        }
+        50% {
+          text-shadow: 
+            0 0 20px rgba(255, 77, 109, 0.6),
+            0 0 40px rgba(255, 77, 109, 0.3),
+            0 0 80px rgba(255, 77, 109, 0.1);
+        }
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media only screen and (max-width: 768px) {
+        .soporte {
+          width: 370px;
+          left: -6px;
+        }
+        .soporte::before {
+          width: 100px;
+          height: 1000px;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 18px;
+        }
+        .soporte::after {
+          width: 95px;
+          height: 1000px;
+          left: 85px;
+        }
+
+        .happy-birthday {
+          top: -100%;
+          left: 120px;
+          font-size: 36px;
+        }
+
+        .portaretrato {
+          transform: scale(0.75);
+          left: 65px;
+          bottom: -12px;
+        }
+        .torta {
+          transform: scale(0.75);
+          left: 15px;
+          bottom: -20px;
+        }
+        .caja {
+          transform: scale(0.75);
+          left: -65px;
+          bottom: -26px;
+        }
+        .vela {
+          transform: scale(0.75);
+          bottom: 94px;
+          left: 145px;
+        }
+        .llama {
+          bottom: 160px;
+          left: 142px;
+        }
+
+        .carta {
+          animation: none;
+          transform: scale(0.85);
+          transform-origin: center center;
+          margin: 0 auto;
+        }
+
+        .camara-emoji {
+          font-size: 4rem;
+        }
+
+        .camara-boton::before {
+          width: 70px;
+          height: 70px;
+        }
+
+        .camara-boton::after {
+          width: 90px;
+          height: 90px;
+        }
+
+        .camara-boton:active {
+          transform: scale(0.75) !important;
+        }
+      }
+
+      @media only screen and (max-width: 400px) {
+        .camara-boton {
+          right: -10px;
+          bottom: 88px;
+          padding: 8px 12px;
+        }
+        .camara-emoji {
+          font-size: 3.2rem;
+        }
+
+        .camara-boton::before {
+          width: 60px;
+          height: 60px;
+        }
+
+        .camara-boton::after {
+          width: 75px;
+          height: 75px;
+        }
+
+        .contenido-video {
+          padding: 16px;
+        }
+
+        .carta {
+          padding: 24px 20px;
+          transform: scale(0.75);
+        }
+        .carta h2 {
+          font-size: 1.6rem;
+        }
+
+        .soporte {
+          width: 300px;
+        }
+        .soporte::after {
+          left: 45px;
+          top: 20px;
+        }
+
+        .happy-birthday {
+          font-size: 30px;
+          top: -100%;
+          left: 130px;
+        }
+
+        .portaretrato {
+          transform: scale(0.65);
+          left: 92px;
+          bottom: -16px;
+        }
+        .torta {
+          transform: scale(0.63);
+          left: 17px;
+          bottom: -27px;
+        }
+        .caja {
+          transform: scale(0.65);
+          left: -100px;
+          bottom: -35px;
+        }
+        .vela {
+          transform: scale(0.65);
+          bottom: 74px;
+          left: 160px;
+        }
+        .llama {
+          bottom: 138px;
+          left: 157px;
+          width: 35px;
+          height: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Estrellas fugaces -->
+    <div class="estrellas-fugaces">
+      <div class="estrella-fugaz"></div>
+      <div class="estrella-fugaz"></div>
+      <div class="estrella-fugaz"></div>
+      <div class="estrella-fugaz"></div>
+      <div class="estrella-fugaz"></div>
+    </div>
+
+    <!-- Confeti Atras -->
+    <canvas id="canvas1"></canvas>
+
+    <div class="contenedor">
+      <!-- PortaRetrato + Torta + Caja -->
+      <div class="portaretrato-torta-caja">
+        <div class="portaretrato">
+          <button class="camara-boton" id="abrirVideo" type="button" aria-label="Abrir video de cumpleaños">
+            <span class="camara-emoji">📹</span>
+          </button>
+          <div class="marco">
+            <img src="recursos/cumpleañero.jpeg" alt="Foto de Ashley" />
+          </div>
+          <div class="soporte-marco"></div>
+        </div>
+
+        <!-- Torta -->
+        <div class="torta-cumpleaños">
+          <div class="torta">
+            <div class="chocolate"></div>
+          </div>
+          <div class="vela"></div>
+          <div class="llama" id="llama" role="button" tabindex="0" aria-label="Soplar la vela"></div>
+        </div>
+
+        <!-- Caja de Regalo -->
+        <div class="caja-wrapper">
+          <div class="caja">
+            <div class="cinta-de-regalo">
+              <div class="cinta-de-regalo-izquierda"></div>
+              <div class="cinta-de-regalo-derecha"></div>
+              <div class="cinta-de-regalo-centro"></div>
+            </div>
+            <div class="regalos">
+              <div class="regalo-sombra"></div>
+            </div>
+            <div class="regalo" id="regalo" role="button" tabindex="0" aria-label="Abrir regalo"></div>
+            <div class="icono-estrella estrella1"></div>
+            <div class="icono-estrella estrella2"></div>
+            <div class="icono-estrella estrella3"></div>
+            <div class="icono-estrella estrella4"></div>
+            <div class="icono-estrella estrella5"></div>
+          </div>
+        </div>
+
+        <!-- Mensaje Feliz Cumpleaños -->
+        <div class="happy-birthday">
+          Feliz Cumpleaños
+          <br />Ashley 🌸
+        </div>
+      </div>
+
+      <!-- Mesa -->
+      <div class="soporte"></div>
+    </div>
+
+    <!-- Carta Modal -->
+    <div class="modal-carta" id="modalCarta">
+      <div class="contenido-carta">
+        <div class="carta">
+          <button class="cerrar-modal cerrar-carta" id="cerrarCarta" type="button" aria-label="Cerrar carta">✕</button>
+          <h2>✨ Querida Ashley ✨</h2>
+          <p>
+            ¡Feliz cumpleaños! Hoy cumples 11 años y aunque todavía no nos conocemos en persona,
+            quiero que sepas que desde Chile te envío un abrazo muy grande y muchos buenos deseos. 🤗
+          </p>
+          <p>
+            Quiero contarte algo muy importante: tu mamá te ama con todo su corazón, y aunque ella esté
+            lejos ahora, siempre está pensando en ti, en cómo estás y en que seas muy feliz. Yo estoy
+            a su lado, cuidándola y queriéndola, y sé que ella se siente orgullosa de la niña tan
+            especial que eres. 💖
+          </p>
+          <p>
+            Sé que estás entrando a una etapa nueva, donde conocerás amigos, vivirás experiencias
+            inolvidables y empezarás a descubrir quién eres. Quiero pedirte algo: no dejes de ser
+            tú misma, siempre auténtica, alegre y con esa luz que seguro te caracteriza. Cada día
+            es único y vale la pena vivirlo al máximo, pero siempre con el corazón y con cuidado,
+            rodeándote de personas que te quieran de verdad. 🌟
+          </p>
+          <p>
+            También quiero decirte que le eches muchas ganas a tus estudios, porque eso te abrirá
+            puertas increíbles y te hará sentir orgullosa de ti misma. Y cuando menos lo pienses,
+            estaremos conociéndonos, compartiendo una sonrisa y creando nuevos recuerdos juntos. 🎈
+          </p>
+          <p>
+            Que este nuevo año de vida esté lleno de colores, risas, abrazos y todo lo que te haga
+            feliz. ¡Disfruta tu día como tú sabes hacerlo!
+          </p>
+          <p class="firma">
+            Con mucho cariño desde Chile,<br />
+            <strong>Rene</strong> 💙
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal-video" id="modalVideo">
+      <div class="contenido-video">
+        <button class="cerrar-modal" id="cerrarVideo" type="button" aria-label="Cerrar video">✕</button>
+        <div class="video-wrapper">
+          <video controls playsinline preload="metadata">
+            <source src="recursos/video.mp4" type="video/mp4" />
+            Tu navegador no soporta este video.
+          </video>
+        </div>
+        <p class="video-caption">🎥 Un recuerdo especial para ti 💖</p>
+      </div>
+    </div>
+
+    <!-- Confeti Delante -->
+    <canvas id="canvas2"></canvas>
+
+    <!-- Audio y Overlay Oscuro -->
+    <audio id="soplido" src="recursos/soplar1.mp3" preload="auto"></audio>
+    <audio id="cancion" src="recursos/cancion.mp3" preload="auto"></audio>
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+      // ---------- CONFETI 1 (Fondo) ----------
+      (function() {
+        const canvas = document.getElementById("canvas1");
+        const ctx = canvas.getContext("2d");
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        let particles = [];
+        const colors = [
+          "rgba(255, 155, 170, 1)", "rgba(224, 130, 144, 1)",
+          "rgba(251, 208, 214, 1)", "rgba(248, 93, 116, 1)",
+          "rgba(246, 121, 139, 1)", "rgba(238, 174, 184, 1)",
+          "rgba(255, 255, 255, 1)"
+        ];
+
+        for (let i = 0; i < 120; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * -h,
+            r: Math.random() * 6 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            vy: Math.random() * 2.5 + 0.5,
+            vx: (Math.random() - 0.5) * 0.5
+          });
+        }
+
+        function animate() {
+          ctx.fillStyle = "rgba(255, 182, 193, 1)";
+          ctx.fillRect(0, 0, w, h);
+          for (let p of particles) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+            p.y += p.vy;
+            p.x += p.vx;
+            if (p.y > h) {
+              p.y = -10;
+              p.x = Math.random() * w;
+            }
+            if (p.x > w) p.x = 0;
+            if (p.x < 0) p.x = w;
+          }
+          requestAnimationFrame(animate);
+        }
+
+        setTimeout(animate, 1000);
+      })();
+
+      // ---------- CONFETI 2 (Frente) ----------
+      (function() {
+        const canvas = document.getElementById("canvas2");
+        const ctx = canvas.getContext("2d");
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        let particles = [];
+        const colors = [
+          "rgba(255, 215, 0, 0.9)", "rgba(255, 100, 150, 0.9)",
+          "rgba(100, 200, 255, 0.9)", "rgba(255, 255, 100, 0.9)",
+          "rgba(255, 150, 255, 0.9)", "rgba(100, 255, 150, 0.9)",
+          "rgba(255, 200, 50, 0.9)"
+        ];
+
+        for (let i = 0; i < 80; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * -h,
+            r: Math.random() * 4 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            vy: Math.random() * 3 + 0.5,
+            vx: (Math.random() - 0.5) * 0.8,
+            rotation: Math.random() * 360,
+            rotSpeed: (Math.random() - 0.5) * 4
+          });
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, w, h);
+          for (let p of particles) {
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation * Math.PI / 180);
+            ctx.beginPath();
+            // Forma de diamante
+            ctx.moveTo(0, -p.r);
+            ctx.lineTo(p.r, 0);
+            ctx.lineTo(0, p.r);
+            ctx.lineTo(-p.r, 0);
+            ctx.closePath();
+            ctx.fillStyle = p.color;
+            ctx.fill();
+            ctx.restore();
+            p.y += p.vy;
+            p.x += p.vx;
+            p.rotation += p.rotSpeed;
+            if (p.y > h) {
+              p.y = -10;
+              p.x = Math.random() * w;
+            }
+            if (p.x > w) p.x = 0;
+            if (p.x < 0) p.x = w;
+          }
+          requestAnimationFrame(animate);
+        }
+
+        setTimeout(animate, 1200);
+      })();
+
+      // ---------- INTERACCIONES ----------
+      (function() {
+        const regalo = document.getElementById("regalo");
+        const regalos = document.querySelector(".regalos");
+        const modalCarta = document.getElementById("modalCarta");
+        const abrirVideo = document.getElementById("abrirVideo");
+        const modalVideo = document.getElementById("modalVideo");
+        const cerrarVideo = document.getElementById("cerrarVideo");
+        const video = modalVideo.querySelector("video");
+        const cancion = document.getElementById("cancion");
+        const overlay = document.getElementById("overlay");
+        const soplido = document.getElementById("soplido");
+        const llama = document.getElementById("llama");
+
+        function abrirModal(modal) {
+          modal.classList.add("activo");
+          document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarModal(modal) {
+          modal.classList.remove("activo");
+          document.body.style.overflow = '';
+        }
+
+        // Abrir carta
+        regalo.addEventListener("click", () => abrirModal(modalCarta));
+        regalos.addEventListener("click", () => abrirModal(modalCarta));
+
+        // Cerrar carta
+        document.getElementById("cerrarCarta").addEventListener("click", (e) => {
+          e.stopPropagation();
+          cerrarModal(modalCarta);
+        });
+
+        modalCarta.addEventListener("click", (event) => {
+          if (event.target === modalCarta) cerrarModal(modalCarta);
+        });
+
+        // Abrir video (pausa música)
+        abrirVideo.addEventListener("click", () => {
+          abrirModal(modalVideo);
+          if (!cancion.paused) cancion.pause();
+          video.play().catch(() => {});
+        });
+
+        // Cerrar video
+        cerrarVideo.addEventListener("click", () => {
+          video.pause();
+          video.currentTime = 0;
+          cerrarModal(modalVideo);
+        });
+
+        modalVideo.addEventListener("click", (event) => {
+          if (event.target === modalVideo) {
+            video.pause();
+            video.currentTime = 0;
+            cerrarModal(modalVideo);
+          }
+        });
+
+        // Soplido
+        llama.addEventListener("click", () => {
+          soplido.currentTime = 0;
+          soplido.play();
+          llama.style.animation = "apagar 0.6s forwards";
+          setTimeout(() => {
+            cancion.currentTime = 0;
+            cancion.play();
+            overlay.classList.add("hidden");
+          }, 1000);
+        });
+
+        // Soporte para teclado
+        llama.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            llama.click();
+          }
+        });
+
+        // Redimensionar
+        window.addEventListener('resize', () => {
+          // Los canvas se ajustan automáticamente
+        });
+
+        console.log('🎉 ¡Feliz Cumpleaños Ashley! 🎉');
+        console.log('💖 Hecho con mucho cariño desde Chile 💖');
+      })();
+    </script>
+  </body>
+</html>
