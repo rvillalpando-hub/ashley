@@ -491,8 +491,8 @@
       }
 
       .marco {
-        width: 70px;
-        height: 100px;
+        width: 100px;
+        height: 140px;
         padding: 5px;
         background: linear-gradient(135deg, #d4a373, #b8895c);
         border: 5px solid #8a5e3c;
