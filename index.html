@@ -1499,102 +1499,114 @@
         setTimeout(animate, 1200);
       })();
 
-      // ---------- INTERACCIONES ----------
-      (function() {
-        const regalo = document.getElementById("regalo");
-        const regalos = document.querySelector(".regalos");
-        const modalCarta = document.getElementById("modalCarta");
-        const abrirVideo = document.getElementById("abrirVideo");
-        const modalVideo = document.getElementById("modalVideo");
-        const cerrarVideo = document.getElementById("cerrarVideo");
-        const video = modalVideo.querySelector("video");
-        const cancion = document.getElementById("cancion");
-        const overlay1 = document.getElementById("overlay1");
-        const soplido = document.getElementById("soplido");
-        const llama = document.getElementById("llama");
-          const overlay = document.getElementById("overlay");
+     // Reemplaza la sección de interacciones con esto:
 
+(function() {
+  const regalo = document.getElementById("regalo");
+  const regalos = document.querySelector(".regalos");
+  const modalCarta = document.getElementById("modalCarta");
+  const abrirVideo = document.getElementById("abrirVideo");
+  const modalVideo = document.getElementById("modalVideo");
+  const cerrarVideo = document.getElementById("cerrarVideo");
+  const video = modalVideo.querySelector("video");
+  const cancion = document.getElementById("cancion");
+  const overlay1 = document.getElementById("overlay1");
+  const soplido = document.getElementById("soplido");
+  const llama = document.getElementById("llama");
+  const overlay = document.getElementById("overlay");
 
+  // ---------- OVERLAY: se oculta después de 3 segundos ----------
+  setTimeout(() => {
+    overlay.classList.add("hidden");
+  }, 3000);
 
-       // ---------- OVERLAY: se oculta después de 3 segundos ----------
-        setTimeout(() => {
-          overlay.classList.add("hidden");
-        }, 3000);
+  let videoStarted = false;
 
-        function abrirModal(modal) {
-          modal.classList.add("activo");
-          document.body.style.overflow = 'hidden';
-        }
+  function abrirModal(modal) {
+    modal.classList.add("activo");
+    document.body.style.overflow = 'hidden';
+  }
 
-        function cerrarModal(modal) {
-          modal.classList.remove("activo");
-          document.body.style.overflow = '';
-        }
+  function cerrarModal(modal) {
+    modal.classList.remove("activo");
+    document.body.style.overflow = '';
+  }
 
-        // Abrir carta
-        regalo.addEventListener("click", () => abrirModal(modalCarta));
-        regalos.addEventListener("click", () => abrirModal(modalCarta));
+  // Abrir carta
+  regalo.addEventListener("click", () => abrirModal(modalCarta));
+  regalos.addEventListener("click", () => abrirModal(modalCarta));
 
-        // Cerrar carta
-        document.getElementById("cerrarCarta").addEventListener("click", (e) => {
-          e.stopPropagation();
-          cerrarModal(modalCarta);
-        });
+  // Cerrar carta
+  document.getElementById("cerrarCarta").addEventListener("click", (e) => {
+    e.stopPropagation();
+    cerrarModal(modalCarta);
+  });
 
-        modalCarta.addEventListener("click", (event) => {
-          if (event.target === modalCarta) cerrarModal(modalCarta);
-        });
+  modalCarta.addEventListener("click", (event) => {
+    if (event.target === modalCarta) cerrarModal(modalCarta);
+  });
 
-        // Abrir video (pausa música)
-        abrirVideo.addEventListener("click", () => {
-          abrirModal(modalVideo);
-          if (!cancion.paused) cancion.pause();
-          video.play().catch(() => {});
-        });
+  // Abrir video - MEJORADO
+  abrirVideo.addEventListener("click", () => {
+    abrirModal(modalVideo);
+    if (!cancion.paused) cancion.pause();
+    
+    // Intentar reproducir el video
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Si falla la reproducción automática, mostramos los controles
+        video.controls = true;
+        console.log("Haz clic en el botón de play para ver el video");
+      });
+    }
+    
+    videoStarted = true;
+  });
 
-        // Cerrar video
-        cerrarVideo.addEventListener("click", () => {
-          video.pause();
-          video.currentTime = 0;
-          cerrarModal(modalVideo);
-        });
+  // Cerrar video - MEJORADO
+  cerrarVideo.addEventListener("click", () => {
+    video.pause();
+    video.currentTime = 0;
+    cerrarModal(modalVideo);
+  });
 
-        modalVideo.addEventListener("click", (event) => {
-          if (event.target === modalVideo) {
-            video.pause();
-            video.currentTime = 0;
-            cerrarModal(modalVideo);
-          }
-        });
+  // Mejor: cerrar solo si se hace clic en el fondo, no en el video
+  modalVideo.addEventListener("click", (event) => {
+    if (event.target === modalVideo) {
+      video.pause();
+      video.currentTime = 0;
+      cerrarModal(modalVideo);
+    }
+  });
 
-        // Soplido
-        llama.addEventListener("click", () => {
-          soplido.currentTime = 0;
-          soplido.play();
-          llama.style.animation = "apagar 0.6s forwards";
-          setTimeout(() => {
-            cancion.currentTime = 0;
-            cancion.play();
-            overlay1.classList.add("hidden");
-          }, 1000);
-        });
+  // Evitar que el clic en el video cierre el modal
+  const videoWrapper = document.querySelector('.video-wrapper');
+  videoWrapper.addEventListener('click', (e) => e.stopPropagation());
 
-        // Soporte para teclado
-        llama.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            llama.click();
-          }
-        });
+  // Soplido - MEJORADO
+  llama.addEventListener("click", () => {
+    soplido.currentTime = 0;
+    soplido.play();
+    llama.style.animation = "apagar 0.6s forwards";
+    setTimeout(() => {
+      cancion.currentTime = 0;
+      cancion.play().catch(() => console.log("La música no pudo reproducirse automáticamente"));
+      overlay1.classList.add("hidden");
+    }, 1000);
+  });
 
-        // Redimensionar
-        window.addEventListener('resize', () => {
-          // Los canvas se ajustan automáticamente
-        });
+  // Soporte para teclado
+  llama.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      llama.click();
+    }
+  });
 
-        console.log('🎉 ¡Feliz Cumpleaños Ashley! 🎉');
-        console.log('💖 Hecho con mucho cariño desde Chile 💖');
-      })();
+  console.log('🎉 ¡Feliz Cumpleaños Ashley! 🎉');
+  console.log('💖 Hecho con mucho cariño desde Chile 💖');
+})();
     </script>
   </body>
 </html>
